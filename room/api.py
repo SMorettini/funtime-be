@@ -16,8 +16,8 @@ API_KEY_SECRET = 'XpbmyqBwqRo7T6uSuImprpEorJSsd6hx'
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 NAME_WORDS = [
-    ['exuberant', 'restless', 'energetic', 'eager', 'infected', 'quarantined'], # adjectives
-    ['yogi', 'poser', 'hacker', 'millenial', 'boomer', 'guru', 'student'], # nouns
+    ['smart', 'powerful', 'agile', 'sweet', 'healthy', 'fit'], # adjectives
+    ['algerian', 'sangoku', 'samurai', 'boy', 'jumper', 'panda', 'player'], # nouns
 ]
 
 
