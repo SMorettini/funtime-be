@@ -1,3 +1,6 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import VideoGrant
 from twilio.rest import Client
@@ -8,8 +11,8 @@ import os
 
 ACCOUNT_SID = 'AC6a24a563a2ca6359406285f0126777d6'
 AUTH_TOKEN = '55706a6a8c2903bcd27066e0991e1cc1'
-API_KEY_SID = 'SK9040ef931c8f75551fe3584855d83b6d'
-API_KEY_SECRET = 'Hc86gVChWivoI0RAhpexNIB5BEmRPglt'
+API_KEY_SID = 'SKd5aa7fa8b8fdd9fb57ef6da0bbb0739d'
+API_KEY_SECRET = 'XpbmyqBwqRo7T6uSuImprpEorJSsd6hx'
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 NAME_WORDS = [
@@ -18,34 +21,33 @@ NAME_WORDS = [
 ]
 
 
-def createRoom(name):
+def createRoom(request, name):
     room = client.video.rooms.create(
                                 type='peer-to-peer',
                                 unique_name=name
                             )
     print(room.sid) # cannot make a room with the same name
-    return room.sid
+    return HttpResponse(room.sid)
 
 
-def joinRoom(name):
+def joinRoom(request, name):
     room = client.video.rooms(name).fetch()
-    return room.unique_name
+    return HttpResponse(room.unique_name)
 
 
-def completeRoom(name):
+def completeRoom(request, name):
     room = client.video.rooms(name).update(status='completed')
-    return room.unique_name
+    return HttpResponse(room.unique_name)
 
 
-def workflow(name):
+def workflow(request, name):
     createRoom(name)
     joinRoom(name)
     sleep(5)
-    return completeRoom(name)
+    return HttpResponse(completeRoom(name))
 
 
-def getToken(room):
-
+def getToken(request, room):
     # Create an Access Token
     token = AccessToken(ACCOUNT_SID, API_KEY_SID, API_KEY_SECRET)
 
@@ -60,4 +62,4 @@ def getToken(room):
     # Serialize the token as a JWT
     jwt = token.to_jwt()
 
-    return jwt
+    return HttpResponse(jwt)

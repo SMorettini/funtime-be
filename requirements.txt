@@ -1,8 +1,14 @@
+aiohttp==3.6.2
 asgiref==3.2.7
+async-timeout==3.0.1
+asyncio==3.4.3
+attrs==19.3.0
 certifi==2020.4.5.1
 chardet==3.0.4
 Django==3.0.6
+django-cors-headers==3.2.1
 idna==2.9
+multidict==4.7.5
 PyJWT==1.7.1
 pytz==2020.1
 requests==2.23.0
@@ -10,3 +16,5 @@ six==1.14.0
 sqlparse==0.3.1
 twilio==6.39.0
 urllib3==1.25.9
+websockets==8.1
+yarl==1.4.2
